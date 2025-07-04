@@ -1,47 +1,28 @@
-Here is a professional, clear README.md file based on the provided Terraform code:
-
-**Infra and Pipeline README**
+**README.md**
 
 **Overview**
-This Terraform infrastructure code defines a single VPC with a public subnet in a specific AWS region. The VPC is configured with a CIDR block and the public subnet is also configured with a CIDR block and an availability zone.
+
+This Terraform configuration deploys a simple AWS infrastructure comprising a VPC and a public subnet. The infrastructure is optimized for a development environment and can be easily modified for production use.
 
 **Key Resources**
 
-* `aws_vpc.main`: The main VPC resource with a CIDR block and name tag "MainVPC".
-* `aws_subnet.public`: The public subnet resource with a CIDR block, availability zone, and name tag "PublicSubnet".
-
-**Variables**
-
-* `aws_region`: The AWS region to deploy to (default: us-west-2).
-* `vpc_cidr`: The CIDR block for the VPC (default: 10.0.0.0/16).
-* `public_subnet_cidr`: The CIDR block for the public subnet (default: 10.0.1.0/24).
-* `availability_zone`: The availability zone for the subnet (default: us-west-2a).
+* `aws_vpc.main`: The main VPC resource, which defines the VPC's CIDR block and is assigned the name "MainVPC".
+* `aws_subnet.public`: The public subnet resource, which defines the public subnet's CIDR block, availability zone, and is assigned the name "PublicSubnet".
 
 **How to Use/Deploy**
 
-1. Clone the repository and navigate to the root directory.
-2. Create a file named `terraform.tfvars` with the following contents:
-```terraform
-aws_region = "<your_aws_region>"
-vpc_cidr = "<your_vpc_cidr>"
-public_subnet_cidr = "<your_public_subnet_cidr>"
-availability_zone = "<your_availability_zone>"
-```
-Replace `<your_aws_region>`, `<your_vpc_cidr>`, `<your_public_subnet_cidr>`, and `<your_availability_zone>` with your desired values.
+1. Clone this repository to your local machine.
+2. Update the `variables.tf` file to set your desired values for:
+	* `aws_region`: The AWS region to deploy to (default: `us-west-2`).
+	* `vpc_cidr`: The CIDR block for the VPC (default: `10.0.0.0/16`).
+	* `public_subnet_cidr`: The CIDR block for the public subnet (default: `10.0.1.0/24`).
+	* `availability_zone`: The availability zone for the subnet (default: `us-west-2a`).
+3. Run `terraform init` to initialize the Terraform working directory.
+4. Run `terraform apply` to deploy the infrastructure.
+5. Once deployed, you can verify the infrastructure using the AWS Management Console or AWS CLI.
 
-3. Run the following command to apply the Terraform configuration:
-```
-terraform init
-terraform plan
-terraform apply
-```
-4. Verify the resources have been created by running:
-```
-terraform state list
-```
-**Important Notes and Assumptions**
+**Important Notes**
 
-* Make sure to replace the default values for `aws_region`, `vpc_cidr`, `public_subnet_cidr`, and `availability_zone` with your desired values in the `terraform.tfvars` file.
-* Ensure you have the required AWS credentials set up on your machine.
-* This code is designed to work with Terraform 1.x and AWS provider 4.x.
-* This code does not include any dependencies or outputs beyond the VPC and public subnet creation.
+* This infrastructure is designed for a development environment and is not suitable for production use without additional security and cost optimization measures.
+* Make sure to update the `variables.tf` file with your desired values before deploying to a production environment.
+* This Terraform configuration assumes that you have the AWS CLI and Terraform installed on your local machine.
